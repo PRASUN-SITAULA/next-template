@@ -1,0 +1,24 @@
+# compose file for development with postgresql
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: next-template
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d ${DATABASE_NAME} -U ${DATABASE_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_NAME: ${DATABASE_NAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    security_opt:
+      - "no-new-privileges:true"
+
+volumes:
+  pg_data:
