@@ -14,10 +14,8 @@
     "db:studio": "prisma studio"
   },
   "lint-staged": {
-    "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": [
-      "biome check --write --files-ignore-unknown=true",
-      "biome format --write --no-errors-on-unmatched",
-      "biome lint --write --no-errors-on-unmatched"
+    "*.{js,ts,jsx,tsx,json,jsonc}": [
+      "biome check --write --files-ignore-unknown=true"
     ]
   },
   "dependencies": {
