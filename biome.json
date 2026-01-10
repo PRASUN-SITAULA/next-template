@@ -46,7 +46,8 @@
     "domains": {
       "next": "recommended",
       "react": "recommended"
-    }
+    },
+    "includes": ["!src/components/ui"]
   },
   "assist": {
     "actions": {
