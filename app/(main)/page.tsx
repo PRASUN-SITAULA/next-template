@@ -6,7 +6,7 @@ type PageProps = {
 }
 export default function HomePage({ searchParams }: PageProps) {
   // The promise itself can be passed to a child component or can be awaited in this page as well
-  const loadedSearchParams = loadSearchParams(searchParams)
+  const _loadedSearchParams = loadSearchParams(searchParams)
   return (
     <div>
       <h1>Welcome to My Website</h1>

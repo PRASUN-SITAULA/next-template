@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.10/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.4.7/schema.json",
   "vcs": {
     "enabled": true,
     "clientKind": "git",
@@ -38,16 +38,13 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true,
-      "suspicious": {
-        "noUnknownAtRules": "off"
-      }
+      "recommended": true
     },
     "domains": {
       "next": "recommended",
       "react": "recommended"
     },
-    "includes": ["!src/components/ui"]
+    "includes": ["**", "!components/ui/**/*"]
   },
   "assist": {
     "actions": {
@@ -55,6 +52,7 @@
         "organizeImports": "on",
         "useSortedProperties": "on"
       }
-    }
+    },
+    "includes": ["**", "!components/ui/**/*"]
   }
 }

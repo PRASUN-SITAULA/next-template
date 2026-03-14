@@ -7,7 +7,6 @@ import { isPublicPath } from "./lib/public-paths"
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
-
   // Get authentication status for all routes
 
   // This is the recommended approach to optimistically redirect users
