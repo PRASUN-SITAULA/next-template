@@ -139,7 +139,7 @@ pnpm commit
 - **Biome** is the sole linter/formatter (no ESLint or Prettier).
   - 2-space indentation, semicolons as-needed, ES5 trailing commas.
   - Import organization and property sorting are enabled via Biome's `assist` actions.
-  - `src/components/ui` is excluded from linting (shadcn-managed).
+  - `components/ui` is excluded from linting (shadcn-managed).
 - **TypeScript** with `strict` mode enabled.
 
 ### Next.js Configuration
