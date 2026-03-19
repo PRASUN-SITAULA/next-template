@@ -1,5 +1,13 @@
 # AGENTS.md — Project Context
 
+<!-- BEGIN:nextjs-agent-rules -->
+ 
+# Next.js: ALWAYS read docs before coding
+ 
+Before any Next.js work, find and read the relevant doc in `node_modules/next/dist/docs/`. Your training data is outdated — the docs are the source of truth.
+ 
+<!-- END:nextjs-agent-rules -->
+
 ## Project Overview
 
 This is a **Next.js 16** starter template built with **React 19**, designed as a full-stack foundation for authenticated web applications. It provides a pre-configured setup with authentication, database access, type-safe server actions, and a polished UI system.
