@@ -11,7 +11,9 @@ export async function proxy(request: NextRequest) {
 
   // This is the recommended approach to optimistically redirect users
   // Handle auth checks in each page/route
-  const sessionCookie = getSessionCookie(request)
+  const sessionCookie = getSessionCookie(request, {
+    cookiePrefix: "nextjs-template",
+  })
 
   // If user is already logged in and trying to access auth pages, redirect to dashboard
   if (sessionCookie && pathname.startsWith("/auth/")) {

@@ -29,6 +29,9 @@ export const auth = betterAuth({
       },
     },
   },
+  advanced: {
+    cookiePrefix: "nextjs-template",
+  },
   plugins: [
     haveIBeenPwned({
       customPasswordCompromisedMessage:

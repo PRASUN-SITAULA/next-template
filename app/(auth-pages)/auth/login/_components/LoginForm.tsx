@@ -42,6 +42,7 @@ export const LoginForm = () => {
           "--border-radius": "calc(var(--radius)  + 4px)",
         } as React.CSSProperties,
       })
+      toast.success("Helel")
     },
   })
 

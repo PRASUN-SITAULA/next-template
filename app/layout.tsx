@@ -30,7 +30,23 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NuqsAdapter>{children}</NuqsAdapter>
-        <Toaster richColors position="top-right" />
+        {/*Toaster with custom success color and text and icons*/}
+        <Toaster
+          richColors
+          position="top-right"
+          toastOptions={{
+            classNames: {
+              success: "!bg-indigo-600 !text-white",
+            },
+          }}
+          // icons={{
+          //   success: <SuccessIcon />,
+          //   info: <InfoIcon />,
+          //   warning: <WarningIcon />,
+          //   error: <ErrorIcon />,
+          //   loading: <LoadingIcon />,
+          // }}
+        />
       </body>
     </html>
   )

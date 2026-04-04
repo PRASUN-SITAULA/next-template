@@ -76,25 +76,6 @@ This is a **Next.js 16** starter template built with **React 19**, designed as a
 
 ## Building and Running
 
-### Prerequisites
-
-- **Node.js** (compatible with Next.js 16)
-- **pnpm** (package manager — uses `pnpm-lock.yaml`)
-- **Docker** (for local PostgreSQL)
-
-### Environment Variables
-
-Create a `.env` file with:
-
-```bash
-BETTER_AUTH_SECRET=<your_secret_key>
-DATABASE_USER=<your_database_user>
-DATABASE_PASSWORD=<your_database_password>
-DATABASE_NAME=<your_database_name>
-NODE_ENV=<your_node_environment>
-DATABASE_URL=<your_database_url>
-```
-
 ### Commands
 
 ```bash
@@ -165,10 +146,17 @@ pnpm commit
 ### Forms & Validation
 
 - **Always use TanStack React Form** (`@tanstack/react-form`) for building forms.
-- **Always use Zod v4** for input validation schemas.
-- **All Zod schemas must be placed in `lib/schema/`** (e.g., `lib/schema/auth.ts`). Group schemas by domain/feature.
 - **Use shadcn/ui components** for all form controls (`Input`, `Select`, `Checkbox`, `Button`, etc.) — never raw HTML inputs.
 - Server actions validate input via Zod schemas imported from `lib/schema/`.
+
+### Zod Schema 
+
+- **Always use Zod v4** for input validation schemas.
+- **All Zod schemas must be placed in `lib/schema/`** (e.g., `lib/schema/auth.ts`). Group schemas by domain/feature.
+- Every field in every Zod schema **must** have explicit, strong validation rules. Never use bare/loose primitives.
+- Never use plain **z.string()**, always use **min, max and trim** whereever necessary.
+- **Always use .int(), .positive(), .min(), .max(), .gt(), .lt(),** or similar constraints for numbers.
+- **Always use z.string().trim().toLowercase().pipe(z.email("Invalid email address"))** for email validation.
 
 ### Data Access Layer (DAL)
 
