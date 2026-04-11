@@ -14,14 +14,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 9
+          run_install: false
       - name: Node.js setup
         uses: actions/setup-node@v6
         with:
-          node-version: "22"
+          node-version: "24"
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
       - name: Apply all the pending migrations
-        run: npx prisma migrate deploy
+        run: pnpm prisma migrate deploy
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           DIRECT_URL: ${{ secrets.DIRECT_URL }}
