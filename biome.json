@@ -44,7 +44,7 @@
       "next": "recommended",
       "react": "recommended"
     },
-    "includes": ["**", "!components/ui/**/*"]
+    "includes": ["**", "!src/components/ui/**/*"]
   },
   "assist": {
     "actions": {
@@ -53,6 +53,6 @@
         "useSortedProperties": "on"
       }
     },
-    "includes": ["**", "!components/ui/**/*"]
+    "includes": ["**", "!src/components/ui/**/*"]
   }
 }

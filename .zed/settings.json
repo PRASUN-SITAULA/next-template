@@ -1,4 +1,12 @@
 {
+  "lsp": {
+    "biome": {
+      "settings": {
+        "require_config_file": true,
+        "config_path": "biome.json"
+      }
+    }
+  },
   "languages": {
     "JavaScript": {
       "formatter": { "language_server": { "name": "biome" } },
