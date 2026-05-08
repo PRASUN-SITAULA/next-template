@@ -36,13 +36,13 @@
     "dotenv": "^17.2.3",
     "loglayer": "^9.1.0",
     "lucide-react": "^1.6.0",
-    "next": "16.2.4",
+    "next": "16.2.6",
     "next-safe-action": "^8.1.8",
     "nuqs": "^2.8.9",
     "pg": "^8.20.0",
     "pino": "^10.3.1",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
     "serialize-error": "^13.0.1",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.3.1",
@@ -79,6 +79,12 @@
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
+    }
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "19.2.14",
+      "@types/react-dom": "19.2.3"
     }
   }
 }
