@@ -4,3 +4,8 @@ allowBuilds:
   prisma: false
   sharp: false
   unrs-resolver: false
+
+minimumReleaseAge: 2880
+minimumReleaseAgeExclude:
+  - next
+  - react
