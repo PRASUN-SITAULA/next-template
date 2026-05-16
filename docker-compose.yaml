@@ -1,7 +1,7 @@
 # compose file for development with postgresql
 services:
   postgres:
-    image: postgres:17-alpine
+    image: postgres:18.4-alpine
     container_name: next-template
     volumes:
       - pg_data:/var/lib/postgresql/data
