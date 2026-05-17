@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   reactCompiler: true,
   typedRoutes: true,
+
+  // for self hosting
+  output: "standalone",
 }
 
 export default nextConfig

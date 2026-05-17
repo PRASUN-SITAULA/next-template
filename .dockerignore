@@ -1,0 +1,106 @@
+# git
+.git
+.gitignore
+
+# dependencies
+node_modules
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+
+# IDE/editor
+.windsurf
+.zed
+
+# linter and formatter
+biome.json
+
+# commitlint and release
+.commitlintrc*
+commitlint.config.*
+.releaserc.json
+CHANGELOG.md
+
+# Tests and testing output (not needed in production images)
+coverage/
+.nyc_output/
+__tests__/
+__mocks__/
+jest/
+cypress/
+cypress/screenshots/
+cypress/videos/
+playwright-report/
+test-results/
+.vitest/
+vitest.config.*
+jest.config.*
+cypress.config.*
+playwright.config.*
+*.test.*
+*.spec.*
+
+# Next.js build output
+.next
+out
+dist
+build
+
+# TypeScript
+*.tsbuildinfo
+
+# docker
+Dockerfile*
+.dockerignore
+compose.yaml
+compose.yml
+docker-compose*.yaml
+docker-compose*.yml
+
+# CI/CD configuration files
+.github/
+
+# Cache directories and temporary data
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+.swc/
+.turbo/
+.tmp/
+.temp/
+
+# AI/ML tool metadata and configs
+.cursor/
+.cursorrules
+.copilot/
+.copilotignore
+.github/copilot/
+.gemini/
+.anthropic/
+.kiro
+.claude
+AGENTS.md
+.agents/
+skills-lock.json
+
+# AI-generated temp files
+*.aider*
+*.copilot*
+*.chatgpt*
+*.claude*
+*.gemini*
+*.openai*
+*.anthropic*
+
+# Documentation
+*.md
+docs/
+
+.husky/
