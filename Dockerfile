@@ -29,8 +29,22 @@ WORKDIR /app
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 
+ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
 
+# Generate prisma schema
+# Dummy DATABASE_URL for prisma generate (only needs schema, not a real connection)
+RUN if [ -f package-lock.json ]; then \
+    DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy" npm run prisma generate; \
+  elif [ -f yarn.lock ]; then \
+    corepack enable yarn && DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy" yarn prisma generate; \
+  elif [ -f pnpm-lock.yaml ]; then \
+    corepack enable pnpm && DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy" pnpm prisma generate; \
+  else \
+    echo "Cannot generate prisma schema." && exit 1; \
+  fi
+
+# Build the application
 RUN if [ -f package-lock.json ]; then \
     npm run build; \
   elif [ -f yarn.lock ]; then \
