@@ -11,3 +11,4 @@ minimumReleaseAgeExclude:
   - react
 
 blockExoticSubdeps: true
+trustPolicy: no-downgrade
