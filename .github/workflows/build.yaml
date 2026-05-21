@@ -1,0 +1,44 @@
+name: Run Lint and Build
+
+on:
+  pull_request:
+    branches: ["**"]
+    paths:
+      - "src/**"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 11
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Setup SocketDev Firewall
+        uses: SocketDev/action@2d3f25590c6ed6ba11a9a14c064d962a3a04698f # v1.3.1
+        with:
+          mode: firewall-free
+
+      - name: Install Dependencies
+        run: sfw pnpm install --frozen-lockfile
+
+      - name: Generate Prisma types
+        env:
+          DATABASE_URL: postgresql://dummy:dummy@localhost:5432/dummy
+        run: pnpm prisma generate
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Build Next.js
+        run: pnpm build
