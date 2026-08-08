@@ -28,7 +28,7 @@ A modern, full-stack foundation for authenticated web applications built with **
 
 | Technology | Version | Purpose |
 |------------|---------|---------|
-| **PostgreSQL** | 17 | Relational database for persistent storage |
+| **PostgreSQL** | 18 | Relational database for persistent storage |
 | **Prisma** | 7.8.0 | Type-safe ORM with auto-generated client |
 | **@prisma/adapter-pg** | 7.8.0 | Native PostgreSQL adapter for Next.js |
 

@@ -1,9 +1,13 @@
 {
   "lsp": {
     "biome": {
+      "binary": {
+        "path": "node_modules/@biomejs/biome/bin/biome",
+        "arguments": ["lsp-proxy"]
+      },
       "settings": {
-        "require_config_file": true,
-        "config_path": "biome.json"
+        "config_path": "backend/biome.json",
+        "require_config_file": true
       }
     }
   },
@@ -13,7 +17,7 @@
         "!eslint",
         "!typescript-language-server",
         "!vtsls",
-        "tsgo",
+        "typescript-ls",
         "..."
       ],
       "formatter": { "language_server": { "name": "biome" } },
@@ -27,7 +31,7 @@
         "!eslint",
         "!typescript-language-server",
         "!vtsls",
-        "tsgo",
+        "typescript-ls",
         "..."
       ],
       "formatter": { "language_server": { "name": "biome" } },
@@ -38,10 +42,10 @@
     },
     "TSX": {
       "language_servers": [
-        "tsgo",
         "!eslint",
         "!vtsls",
         "!typescript-language-server",
+        "typescript-ls",
         "..."
       ],
       "formatter": { "language_server": { "name": "biome" } },
