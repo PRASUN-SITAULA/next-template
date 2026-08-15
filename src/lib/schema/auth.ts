@@ -11,3 +11,5 @@ export const authSchema = z.object({
     )
     .trim(),
 })
+
+export type AuthValues = z.infer<typeof authSchema>

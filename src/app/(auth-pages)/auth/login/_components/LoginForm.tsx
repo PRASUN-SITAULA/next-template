@@ -1,6 +1,6 @@
 "use client"
 
-import { useForm } from "@tanstack/react-form"
+import { revalidateLogic, useForm } from "@tanstack/react-form"
 import { Eye, EyeOff } from "lucide-react"
 import Link from "next/link"
 import { useId, useState } from "react"
@@ -14,18 +14,25 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { authSchema } from "@/lib/schema/auth"
+import { type AuthValues, authSchema } from "@/lib/schema/auth"
 
 export const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false)
   const id = useId()
+
+  const defaultValues: AuthValues = {
+    email: "",
+    password: "",
+  }
+
   const form = useForm({
-    defaultValues: {
-      email: "",
-      password: "",
-    },
+    defaultValues,
+    validationLogic: revalidateLogic({
+      mode: "submit",
+      modeAfterSubmission: "change",
+    }),
     validators: {
-      onSubmit: authSchema,
+      onDynamic: authSchema,
     },
     onSubmit: async ({ value }) => {
       toast("You submitted the following values:", {
