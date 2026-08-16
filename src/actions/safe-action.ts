@@ -13,6 +13,11 @@ const ZOD_VALIDATION_ERROR_MESSAGE = "An error occurred while validating input"
 const DATABASE_ERROR_MESSAGE = "An error occurred with the database"
 
 const actionClient = createSafeActionClient({
+  defineMetadataSchema() {
+    return z.object({
+      name: z.string(),
+    })
+  },
   handleServerError: (error) => {
     if (error instanceof APIError) {
       switch (error.status) {
@@ -28,22 +33,19 @@ const actionClient = createSafeActionClient({
     }
     if (error instanceof ZodError) {
       return ZOD_VALIDATION_ERROR_MESSAGE
-    } else if (
+    }
+    if (
       error instanceof Prisma.PrismaClientInitializationError ||
       error instanceof Prisma.PrismaClientKnownRequestError ||
       error instanceof Prisma.PrismaClientUnknownRequestError ||
       error instanceof Prisma.PrismaClientValidationError
     ) {
       return DATABASE_ERROR_MESSAGE
-    } else if (error instanceof ActionError) {
+    }
+    if (error instanceof ActionError) {
       return error.message
     }
     return DEFAULT_SERVER_ERROR_MESSAGE
-  },
-  defineMetadataSchema() {
-    return z.object({
-      name: z.string(),
-    })
   },
 })
 

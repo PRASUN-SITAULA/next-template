@@ -15,7 +15,7 @@ export const authenticationMiddleware = createMiddleware<{
     throw new ActionError("User is not authenticated")
   }
   return next({
-    ctx: { session: session },
+    ctx: { session },
   })
 })
 

@@ -27,29 +27,29 @@ export const LoginForm = () => {
 
   const form = useForm({
     defaultValues,
-    validationLogic: revalidateLogic({
-      mode: "submit",
-      modeAfterSubmission: "change",
-    }),
-    validators: {
-      onDynamic: authSchema,
-    },
     onSubmit: async ({ value }) => {
       toast("You submitted the following values:", {
+        classNames: {
+          content: "flex flex-col gap-2",
+        },
         description: (
           <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
             <code>{JSON.stringify(value, null, 2)}</code>
           </pre>
         ),
         position: "bottom-right",
-        classNames: {
-          content: "flex flex-col gap-2",
-        },
         style: {
           "--border-radius": "calc(var(--radius)  + 4px)",
         } as React.CSSProperties,
       })
       toast.success("Helel")
+    },
+    validationLogic: revalidateLogic({
+      mode: "submit",
+      modeAfterSubmission: "change",
+    }),
+    validators: {
+      onDynamic: authSchema,
     },
   })
 
@@ -71,13 +71,13 @@ export const LoginForm = () => {
               <Field data-invalid={isInvalid}>
                 <FieldLabel htmlFor={field.name}>Email</FieldLabel>
                 <Input
+                  aria-invalid={isInvalid}
                   id={field.name}
                   name={field.name}
-                  value={field.state.value}
                   onBlur={field.handleBlur}
                   onChange={(e) => field.handleChange(e.target.value)}
-                  aria-invalid={isInvalid}
                   placeholder="name@example.com"
+                  value={field.state.value}
                 />
                 {isInvalid && <FieldError errors={field.state.meta.errors} />}
               </Field>
@@ -94,31 +94,31 @@ export const LoginForm = () => {
                 <div className="flex items-center justify-between">
                   <FieldLabel htmlFor={field.name}>Password</FieldLabel>
                   <Link
+                    className="font-medium text-muted-foreground text-xs hover:text-primary"
                     href="/"
-                    className="text-xs font-medium text-muted-foreground hover:text-primary"
                   >
                     Forgot password?
                   </Link>
                 </div>
                 <div className="relative">
                   <Input
+                    aria-invalid={isInvalid}
+                    className="pr-10"
                     id={field.name}
                     name={field.name}
-                    type={showPassword ? "text" : "password"}
-                    value={field.state.value}
                     onBlur={field.handleBlur}
                     onChange={(e) => field.handleChange(e.target.value)}
-                    aria-invalid={isInvalid}
                     placeholder="Enter your password"
-                    className="pr-10"
+                    type={showPassword ? "text" : "password"}
+                    value={field.state.value}
                   />
                   <Button
+                    className="absolute top-1/2 right-1 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                    onClick={() => setShowPassword(!showPassword)}
+                    size="icon-sm"
+                    tabIndex={-1}
                     type="button"
                     variant="ghost"
-                    size="icon-sm"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-1 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                    tabIndex={-1}
                   >
                     {showPassword ? (
                       <EyeOff className="size-4" />
@@ -141,8 +141,8 @@ export const LoginForm = () => {
       >
         {([canSubmit, isSubmitting]) => (
           <SubmitButton
-            pending={isSubmitting}
             disabled={!canSubmit}
+            pending={isSubmitting}
             pendingText="Logging in..."
           >
             Login

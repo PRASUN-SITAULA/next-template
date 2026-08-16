@@ -9,6 +9,15 @@
         "config_path": "backend/biome.json",
         "require_config_file": true
       }
+    },
+    "typescript-ls": {
+      "settings": {
+        "typescript": {
+          "preferences": {
+            "includePackageJsonAutoImports": "on"
+          }
+        }
+      }
     }
   },
   "languages": {
@@ -20,7 +29,11 @@
         "typescript-ls",
         "..."
       ],
-      "formatter": { "language_server": { "name": "biome" } },
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      },
       "code_actions_on_format": {
         "source.fixAll.biome": true,
         "source.organizeImports.biome": true
@@ -34,7 +47,11 @@
         "typescript-ls",
         "..."
       ],
-      "formatter": { "language_server": { "name": "biome" } },
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      },
       "code_actions_on_format": {
         "source.fixAll.biome": true,
         "source.organizeImports.biome": true
@@ -48,26 +65,39 @@
         "typescript-ls",
         "..."
       ],
-      "formatter": { "language_server": { "name": "biome" } },
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      },
       "code_actions_on_format": {
         "source.fixAll.biome": true,
         "source.organizeImports.biome": true
       }
     },
     "JSON": {
-      "formatter": { "language_server": { "name": "biome" } },
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      },
       "code_actions_on_format": {
         "source.fixAll.biome": true,
         "source.organizeImports.biome": true
       }
     },
-
     "JSONC": {
-      "formatter": { "language_server": { "name": "biome" } },
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      },
       "code_actions_on_format": {
         "source.fixAll.biome": true,
         "source.organizeImports.biome": true
       }
     }
-  }
+  },
+  "format_on_save": "on",
+  "formatter": "language_server"
 }

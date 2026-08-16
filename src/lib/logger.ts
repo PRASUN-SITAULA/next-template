@@ -15,6 +15,24 @@ const pinoLogger = pino({
 
 const log = new LogLayer({
   errorSerializer: serializeError,
+  plugins: [
+    {
+      // Add a plugin to label the log entry as coming from the server or client
+      onBeforeMessageOut(params: PluginBeforeMessageOutParams) {
+        const tag = isServer ? "Server" : "Client"
+
+        if (
+          params.messages &&
+          params.messages.length > 0 &&
+          typeof params.messages[0] === "string"
+        ) {
+          params.messages[0] = `[${tag}] ${params.messages[0]}`
+        }
+
+        return params.messages
+      },
+    },
+  ],
   transport: [
     // Simple Pretty Terminal for development
     getSimplePrettyTerminal({
@@ -27,22 +45,6 @@ const log = new LogLayer({
       enabled: process.env.NODE_ENV === "production",
       logger: pinoLogger,
     }),
-  ],
-  plugins: [
-    {
-      // Add a plugin to label the log entry as coming from the server or client
-      onBeforeMessageOut(params: PluginBeforeMessageOutParams) {
-        const tag = isServer ? "Server" : "Client"
-
-        if (params.messages && params.messages.length > 0) {
-          if (typeof params.messages[0] === "string") {
-            params.messages[0] = `[${tag}] ${params.messages[0]}`
-          }
-        }
-
-        return params.messages
-      },
-    },
   ],
 })
 

@@ -5,9 +5,22 @@ import { haveIBeenPwned } from "better-auth/plugins"
 import prisma from "./prisma"
 
 export const auth = betterAuth({
+  advanced: {
+    cookiePrefix: "nextjs-template",
+  },
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),
+  emailAndPassword: {
+    enabled: true,
+  },
+  plugins: [
+    haveIBeenPwned({
+      customPasswordCompromisedMessage:
+        "This password has been linked to a data breach. Please choose a more secure password.",
+    }),
+    nextCookies(),
+  ],
   session: {
     cookieCache: {
       enabled: true,
@@ -18,27 +31,14 @@ export const auth = betterAuth({
     process.env.NODE_ENV === "production"
       ? ["https://example.com"]
       : ["http://localhost:3000"],
-  emailAndPassword: {
-    enabled: true,
-  },
   user: {
     additionalFields: {
       role: {
-        type: "string",
         required: true,
+        type: "string",
       },
     },
   },
-  advanced: {
-    cookiePrefix: "nextjs-template",
-  },
-  plugins: [
-    haveIBeenPwned({
-      customPasswordCompromisedMessage:
-        "This password has been linked to a data breach. Please choose a more secure password.",
-    }),
-    nextCookies(),
-  ],
 })
 
 export type Session = typeof auth.$Infer.Session

@@ -14,7 +14,7 @@ export function SubmitButton({
   ...props
 }: Props) {
   return (
-    <Button type="submit" aria-disabled={pending} {...props}>
+    <Button aria-disabled={pending} type="submit" {...props}>
       {pending ? pendingText : children}
     </Button>
   )
