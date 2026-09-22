@@ -15,7 +15,6 @@ pnpm-debug.log*
 
 
 # IDE/editor
-.windsurf
 .zed
 
 # linter and formatter
@@ -82,7 +81,6 @@ docker-compose*.yml
 .copilot/
 .copilotignore
 .github/copilot/
-.gemini/
 .anthropic/
 .kiro
 .claude
@@ -95,7 +93,6 @@ skills-lock.json
 *.copilot*
 *.chatgpt*
 *.claude*
-*.gemini*
 *.openai*
 *.anthropic*
 
