@@ -57,8 +57,7 @@ This is a **Next.js 16** starter template built with **React 19**, designed as a
 │   ├── prisma.ts        # Singleton Prisma client (PrismaPg adapter)
 │   ├── constants.ts     # App-wide constants (e.g., DEFAULT_LOGIN_REDIRECT)
 │   ├── public-paths.ts  # Public route definitions for middleware
-│   ├── schema/          # Shared Zod schemas
-│   └── utils.ts         # Utility functions (cn helper)
+│   └── schema/          # Shared Zod schemas
 ├── prisma/
 │   └── schema.prisma    # Database schema (User, Session, Account, Verification)
 └── proxy.ts             # Next.js middleware (auth redirects, public path checks)
@@ -141,7 +140,8 @@ pnpm commit
 
 - **shadcn/ui components** live in `components/ui/` and should be added via the shadcn CLI.
 - **App-specific components** live directly in `components/` or co-located with routes using `_components/` directories.
-- **Path aliases** use `@/*` mapping to the project root (e.g., `@/lib/utils`, `@/components/ui`).
+- **Path aliases** use `@/*` mapping to the project root (e.g., `@/lib/schema`, `@/components/ui`).
+- **Class name merging** uses the `cn` package (`import { cn } from "cn"`). `clsx` and `tailwind-merge` are not dependencies.
 
 ### Forms & Validation
 
