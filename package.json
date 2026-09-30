@@ -33,7 +33,7 @@
     "@tanstack/react-form": "^1.33.5",
     "better-auth": "^1.7.5",
     "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
+    "cn": "^0.4.0",
     "dotenv": "^17.2.3",
     "loglayer": "^9.1.0",
     "lucide-react": "^1.46.0",
@@ -46,7 +46,6 @@
     "react-dom": "19.2.8",
     "serialize-error": "^13.0.1",
     "sonner": "^2.0.8",
-    "tailwind-merge": "^3.3.1",
     "zod": "^4.6.5"
   },
   "devDependencies": {
