@@ -5,8 +5,8 @@ A modern, full-stack foundation for authenticated web applications built with **
 ## ✨ Features
 
 - **Framework**: Next.js 16 (App Router) with React 19 & React Compiler
-- **Auth**: Robust session-based authentication with `better-auth`
-- **Database**: Prisma ORM with PostgreSQL 17
+- **Auth**: Authentication scaffolding with `better-auth` (email/password, session cookies, breach checks)
+- **Database**: Prisma ORM with PostgreSQL 18
 - **Validation**: Type-safe Server Actions and schema validation with `next-safe-action` and `zod`
 - **UI**: Tailwind CSS 4, shadcn/ui, and Base UI primitives
 - **Testing**: Integrated Vitest and React Testing Library setup
@@ -20,31 +20,31 @@ A modern, full-stack foundation for authenticated web applications built with **
 
 | Technology | Version | Purpose |
 |------------|---------|---------|
-| **Next.js** | 16.2.6 | Full-stack framework with App Router & Type-safe Routes |
-| **React** | 19.2.6 | UI library with concurrent features & React Compiler |
-| **TypeScript** | 6.0.0+ | Modern type-safe JavaScript |
+| **Next.js** | 16.4.2 | Full-stack framework with App Router & Type-safe Routes |
+| **React** | 19.3.0 | UI library with concurrent features & React Compiler |
+| **TypeScript** | 6.0.3 | Modern type-safe JavaScript |
 
 ### Database & ORM
 
 | Technology | Version | Purpose |
 |------------|---------|---------|
 | **PostgreSQL** | 18 | Relational database for persistent storage |
-| **Prisma** | 7.8.0 | Type-safe ORM with auto-generated client |
-| **@prisma/adapter-pg** | 7.8.0 | Native PostgreSQL adapter for Next.js |
+| **Prisma** | 7.9.1 | Type-safe ORM with auto-generated client |
+| **@prisma/adapter-pg** | 7.9.1 | Native PostgreSQL adapter for Next.js |
 
 ### Authentication
 
 | Technology | Version | Purpose |
 |------------|---------|---------|
-| **better-auth** | 1.6.10 | Lightweight, secure authentication framework |
+| **better-auth** | 1.7.5 | Lightweight, secure authentication framework |
 
 ### Testing
 
 | Technology | Version | Purpose |
 |------------|---------|---------|
-| **Vitest** | 4.1.5 | High-performance Vite-native test runner |
+| **Vitest** | 5.0.5 | High-performance Vite-native test runner |
 | **React Testing Library** | 16.3.2 | User-centric UI component testing |
-| **jsdom** | 29.0.2 | Browser environment simulation for Node.js |
+| **jsdom** | 29.1.1 | Browser environment simulation for Node.js |
 
 ### UI & Styling
 
@@ -52,16 +52,16 @@ A modern, full-stack foundation for authenticated web applications built with **
 |------------|---------|---------|
 | **Tailwind CSS** | 4.x | Utility-first CSS framework |
 | **shadcn/ui** | - | Accessible UI components built on Base UI |
-| **@base-ui/react** | 1.3.0 | Headless UI primitives |
-| **Lucide React** | 1.6.0 | Modern icon library |
+| **@base-ui/react** | 1.8.0 | Headless UI primitives |
+| **Lucide React** | 1.47.0 | Modern icon library |
 
 ### Forms & Validation
 
 | Technology | Version | Purpose |
 |------------|---------|---------|
-| **@tanstack/react-form** | 1.27.7 | Performance-focused form state management |
-| **next-safe-action** | 8.1.8 | Type-safe Server Actions with middleware |
-| **Zod** | 4.3.6 | Schema-first validation |
+| **@tanstack/react-form** | 1.33.5 | Performance-focused form state management |
+| **next-safe-action** | 8.7.3 | Type-safe Server Actions with middleware |
+| **Zod** | 4.6.5 | Schema-first validation |
 
 ---
 
@@ -69,8 +69,8 @@ A modern, full-stack foundation for authenticated web applications built with **
 
 ### Prerequisites
 
-- Node.js 22+
-- pnpm 9+ (recommended)
+- Node.js 22.12+
+- pnpm 11+ (recommended)
 - Docker Desktop/Engine
 
 ### Installation
@@ -104,11 +104,13 @@ A modern, full-stack foundation for authenticated web applications built with **
    docker compose up -d
    ```
 
-4. **Initialize database:**
+4. **Generate the Prisma client:**
    ```bash
    pnpm db:generate
-   pnpm db:seed # Optional
    ```
+
+   After changing the schema, create and apply a migration with
+   `pnpm exec prisma migrate dev --name <migration-name>`.
 
 5. **Start development server:**
    ```bash
@@ -130,7 +132,7 @@ Open [http://localhost:3000](http://localhost:3000) to see your app.
 │   ├── hooks/           # Custom React hooks
 │   ├── lib/             # Core logic (Auth, Prisma, Logger, Schemas)
 │   └── __tests__/       # Test suites
-├── prisma/              # Database schema and migrations
+├── prisma/              # Database schema
 └── public/              # Static assets
 ```
 
@@ -144,7 +146,8 @@ Open [http://localhost:3000](http://localhost:3000) to see your app.
 | `pnpm build` | Production build |
 | `pnpm start` | Start production server |
 | `pnpm test` | **Run Vitest test suite** |
-| `pnpm lint` | Lint code with Biome |
+| `pnpm check` | Check code with Biome (no writes) |
+| `pnpm lint` | Lint and auto-fix code with Biome |
 | `pnpm format` | Format code with Biome |
 | `pnpm db:studio` | Interactive database GUI |
 | `pnpm db:generate` | Generate Prisma client |
@@ -160,6 +163,8 @@ Optimized for performance with:
 - `reactCompiler: true`
 - `cacheComponents: true`
 - `typedRoutes: true`
+- `partialPrefetching: true`
+- `output: "standalone"` for self-hosting
 
 ### Biome
 Used for both linting and formatting. Extremely fast and replaces ESLint/Prettier.

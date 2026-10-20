@@ -4,18 +4,21 @@ services:
     image: postgres:18.4-alpine
     container_name: next-template
     volumes:
-      - pg_data:/var/lib/postgresql/data
+      # PostgreSQL 18+ uses a version-specific PGDATA directory, so the
+      # volume must be mounted at /var/lib/postgresql instead of .../data
+      - pg_data:/var/lib/postgresql
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -d ${DATABASE_NAME} -U ${DATABASE_USER}"]
       interval: 10s
       timeout: 5s
       retries: 5
+      start_period: 5s
     ports:
       - "5432:5432"
     environment:
       POSTGRES_USER: ${DATABASE_USER}
-      POSTGRES_NAME: ${DATABASE_NAME}
+      POSTGRES_DB: ${DATABASE_NAME}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
     security_opt:
       - "no-new-privileges:true"
